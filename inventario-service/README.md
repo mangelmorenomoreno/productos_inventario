@@ -1,131 +1,93 @@
 
-📦 Inventario Service
+📦 Inventario Service - Microservicio de Gestión de Inventario
 
-Microservicio responsable de la gestión del inventario de productos. Se integra con el microservicio de productos para obtener información adicional como nombre, precio y descripción.
+Este microservicio forma parte del sistema de productos e inventario. Permite realizar operaciones sobre el inventario de productos como:
 
---------------------------------------------------
+- Consultar stock por producto
+- Actualizar la cantidad en inventario
+- Registrar compras (validando producto y stock)
 
-🚀 Funcionalidades principales
-
-- Consultar la cantidad disponible de un producto por su ID.
-- Actualizar la cantidad disponible de un producto.
-- Crear un registro de inventario si no existe.
-- Integración con microservicio de productos vía Feign Client.
-- Control de errores personalizado y respuesta estandarizada.
-
---------------------------------------------------
-
-🧩 Estructura del modelo
-
-Entidad: Inventario
-
-| Campo        | Tipo       | Descripción                                |
-|--------------|------------|--------------------------------------------|
-| id           | Long       | Identificador del registro de inventario   |
-| idProducto   | Long       | ID del producto (único, FK lógica)         |
-| cantidad     | Integer    | Cantidad disponible en inventario          |
-
---------------------------------------------------
-
-📡 Endpoints
-
-1. Consultar detalle de producto con inventario
-
-GET /product/{id}
-
-Respuesta:
-
-{
-"productoId": 2,
-"nombre": "Producto 1",
-"precio": 100,
-"descripcion": "Producto 1 descripcion",
-"cantidad": 15
-}
-
-2. Actualizar cantidad de producto
-
-PUT /update
-
-Body:
-
-{
-"productoId": 2,
-"cantidad": 20
-}
-
-Respuesta:
-
-{
-"id": 3,
-"idProducto": 2,
-"cantidad": 20
-}
-
---------------------------------------------------
-
-🔐 Seguridad
-
-Se utiliza autenticación mediante API Key en los encabezados (X-API-KEY) para consumir los endpoints del microservicio de productos.
-
---------------------------------------------------
-
-🛠️ Tecnologías utilizadas
+🔧 Tecnologías utilizadas
 
 - Java 17
 - Spring Boot 3
-- Spring Web
-- Spring Data JPA
-- OpenFeign
+- JUnit 4 + Mockito
+- Maven
+- OpenAPI (Swagger 3)
 - Lombok
-- PostgreSQL (puede ajustarse)
 - Log4j2
+- PostgreSQL (opcional)
+- Docker (opcional)
 
---------------------------------------------------
+🗂️ Estructura del proyecto
 
-⚙️ Configuración (application.yml)
+inventario-service/
+├── crosscutting/                 # DTOs, errores, utilidades comunes
+├── modules/
+│   ├── compra/                   # Lógica de compra
+│   └── inventario/              # Lógica de inventario
+├── infrastructure/              # Filtros y configuración
+├── application/                 # Aplicación principal
+├── resources/                   # application.yml, logs, etc.
+└── test/                        # Pruebas unitarias con JUnit y Mockito
 
-server:
-port: 8082
+🧩 Endpoints disponibles
 
-productos:
-service:
-url: http://localhost:8081
+📌 Inventario
 
-security:
-api-key: LINK_TIC
+- GET /api/inventario/{id}  
+  Retorna la información del inventario y datos del producto correspondiente.
 
---------------------------------------------------
+- PUT /api/inventario  
+  Actualiza o registra un nuevo producto en el inventario.
 
-📁 Estructura de paquetes
+🛒 Compra
 
-com.linktic.inventario_service
-├── api
-├── crosscutting
-│   ├── domain
-│   ├── enums
-│   ├── errors
-│   ├── response
-├── infrastructure
-│   └── configuration
-├── modules
-│   └── inventario
-│       ├── usecase
-│       └── dataprovider
+- POST /api/compra  
+  Permite realizar una compra, validando existencia y cantidad en inventario. Disminuye el stock.
 
---------------------------------------------------
+🧪 Pruebas Unitarias
 
-✍️ Autor
+Incluye pruebas unitarias para:
 
-- Miguel Moreno – Ingeniero de Sistemas
+- InventarioService
+- CompraService
+- InventarioController
+- CompraController
+- ResponseEntityUtil
+- Filtro de API Key (ApiKeyFilter)
 
---------------------------------------------------
+mvn clean install
 
-🧪 Pruebas
+> Las pruebas utilizan Mockito para simular dependencias como ProductoClient e interfaces de persistencia.
 
-Pruebas unitarias cubren escenarios como:
+🚀 Cómo ejecutar el servicio localmente
 
-- Consulta exitosa de inventario y producto.
-- Respuesta nula o error desde microservicio de productos.
-- Actualización de inventario existente.
-- Creación automática de inventario si no existe.
+1. Clona el repositorio:
+
+   git clone https://github.com/mangelmorenomoreno/inventario-service.git
+   cd inventario-service
+
+2. Ejecuta con Maven:
+
+   mvn spring-boot:run
+
+3. Accede a Swagger:
+
+   http://localhost:8080/swagger-ui.html
+
+🔐 Seguridad
+
+- Autenticación por apiKey en los encabezados (configurable en Swagger).
+- Filtro implementado en ApiKeyFilter.
+
+📦 Dependencias clave
+
+- ProductoClient: cliente REST que consulta el microservicio de productos.
+- ResponseEntityUtil: utilidad para generar respuestas estándar.
+- CustomException: excepción controlada para errores de negocio.
+
+📌 Autor
+
+- 👨‍💻 Miguel Ángel Moreno
+- 📧 miguel.moreno@linktic.com
