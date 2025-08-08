@@ -31,7 +31,7 @@ Este microservicio se encarga de la gestión de productos, incluyendo creación,
 Todos los endpoints bajo `/product/**` requieren una API Key enviada por encabezado HTTP:
 
 ```
-X-API-KEY: mi-clave-secreta
+X-API-KEY: LINK_TIC
 ```
 
 > La clave se define en el archivo `application.yml` bajo la propiedad `security.api-key`.
@@ -76,7 +76,7 @@ server:
   port: 8081
 
 security:
-  api-key: mi-clave-secreta
+  api-key: LINK_TIC
 ```
 
 ---
@@ -101,7 +101,7 @@ com.linktic.productos_service
 ## 👤 Autor
 
 **Miguel Ángel Moreno**  
-Ingeniero de Sistemas – LinkTIC  
+Ingeniero de Sistemas   
 📅 Fecha de creación: 07-08-2025
 
 ---

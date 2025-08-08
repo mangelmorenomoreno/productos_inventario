@@ -31,20 +31,32 @@ inventario-service/
 ├── resources/                   # application.yml, logs, etc.
 └── test/                        # Pruebas unitarias con JUnit y Mockito
 
-🧩 Endpoints disponibles
+📌 Endpoints disponibles
 
-📌 Inventario
+🔄 Inventario
 
-- GET /api/inventario/{id}  
-  Retorna la información del inventario y datos del producto correspondiente.
-
-- PUT /api/inventario  
-  Actualiza o registra un nuevo producto en el inventario.
+Método | Endpoint               | Descripción
+-------|------------------------|---------------------------
+GET    | /api/inventario/{id}   | Retorna la información del inventario y datos del producto correspondiente
+PUT    | /api/inventario        | Actualiza o registra un nuevo producto en el inventario
 
 🛒 Compra
 
-- POST /api/compra  
-  Permite realizar una compra, validando existencia y cantidad en inventario. Disminuye el stock.
+Método | Endpoint      | Descripción
+-------|---------------|----------------------------------------------
+POST   | /api/compra   | Permite realizar la compra de un producto verificando inventario y retornando los detalles
+
+🔐 Seguridad
+
+- API Key requerida en todos los endpoints.
+- Header requerido:
+  X-API-KEY: LINK_TIC
+
+🌐 Swagger
+
+Puedes probar los endpoints desde Swagger en la siguiente URL:
+
+http://localhost:8082/swagger-ui/index.html
 
 🧪 Pruebas Unitarias
 
@@ -57,37 +69,26 @@ Incluye pruebas unitarias para:
 - ResponseEntityUtil
 - Filtro de API Key (ApiKeyFilter)
 
-mvn clean install
+mvn clean test
 
 > Las pruebas utilizan Mockito para simular dependencias como ProductoClient e interfaces de persistencia.
 
 🚀 Cómo ejecutar el servicio localmente
 
-1. Clona el repositorio:
+1. Clona el repositorio
 
    git clone https://github.com/mangelmorenomoreno/inventario-service.git
    cd inventario-service
 
-2. Ejecuta con Maven:
+2. Ejecuta localmente
 
    mvn spring-boot:run
 
-3. Accede a Swagger:
+3. Accede a Swagger
 
-   http://localhost:8080/swagger-ui.html
-
-🔐 Seguridad
-
-- Autenticación por apiKey en los encabezados (configurable en Swagger).
-- Filtro implementado en ApiKeyFilter.
-
-📦 Dependencias clave
-
-- ProductoClient: cliente REST que consulta el microservicio de productos.
-- ResponseEntityUtil: utilidad para generar respuestas estándar.
-- CustomException: excepción controlada para errores de negocio.
+   http://localhost:8082/swagger-ui/index.html
 
 📌 Autor
 
 - 👨‍💻 Miguel Ángel Moreno
-- 📧 miguel.moreno@linktic.com
+- 📧 mangelmorenomoreno@gmail.com
