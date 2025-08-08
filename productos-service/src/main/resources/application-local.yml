@@ -2,7 +2,7 @@ spring:
   application:
     name: productos-service
   datasource:
-    url: jdbc:postgresql://postgres:5432/productos-db
+    url: jdbc:postgresql://localhost:5432/productos-db
     username: postgres
     password: admin
 

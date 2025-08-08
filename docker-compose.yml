@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  productos-service:
+    build:
+      context: ./productos-service
+    container_name: productos-service
+    ports:
+      - "${PRODUCTOS_PORT}:${PRODUCTOS_PORT}"
+    depends_on:
+      - postgres
+    networks:
+      - app-network
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_DB_PRODUCTOS}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      SERVER_PORT: ${PRODUCTOS_PORT}
+      SECURITY_API_KEY: ${API_KEY}
+
+  inventario-service:
+    build:
+      context: ./inventario-service
+    container_name: inventario-service
+    ports:
+      - "${INVENTARIO_PORT}:${INVENTARIO_PORT}"
+    depends_on:
+      - postgres
+      - productos-service
+    networks:
+      - app-network
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_DB_INVENTARIO}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      PRODUCTOS_SERVICE_URL: http://productos-service:${PRODUCTOS_PORT}
+      PRODUCTOS_SERVICE_API_KEY: ${API_KEY}
+      SERVER_PORT: ${INVENTARIO_PORT}
+      SECURITY_API_KEY: ${API_KEY}
+
+volumes:
+  pgdata:
+
+networks:
+  app-network:
+    driver: bridge
