@@ -1,0 +1,13 @@
+# Base de datos
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=admin
+POSTGRES_DB_PRODUCTOS=productos-db
+POSTGRES_DB_INVENTARIO=inventario-db
+
+# Puertos de servicios
+PRODUCTOS_PORT=8081
+INVENTARIO_PORT=8082
+POSTGRES_PORT=5432
+
+# Seguridad
+API_KEY=LINK_TIC
