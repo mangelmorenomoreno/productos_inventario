@@ -19,6 +19,13 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import org.mockito.junit.MockitoJUnitRunner;
 
+/**
+ * ProductServiceTest.
+ *
+ * @author miguel.moreno
+ * @version 1.0
+ * @since 08-08-2025
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class ProductServiceTest {
 

@@ -2,14 +2,22 @@ package com.linktic.productos_service.crosscutting.utils;
 
 import com.linktic.productos_service.crosscutting.domain.dto.ValidationError;
 import com.linktic.productos_service.crosscutting.domain.enums.ResponseStatusCode;
-
 import com.linktic.productos_service.crosscutting.patterns.IrestResponse;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import static org.junit.Assert.*;
-
+/**
+ * ResponseEntityUtilTest.
+ *
+ * @author miguel.moreno
+ * @version 1.0
+ * @since 08-08-2025
+ */
 public class ResponseEntityUtilTest {
 
 

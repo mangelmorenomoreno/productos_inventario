@@ -20,6 +20,13 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.ResponseEntity;
 
+/**
+ * ProductControllerTest.
+ *
+ * @author miguel.moreno
+ * @version 1.0
+ * @since 08-08-2025
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class ProductControllerTest {
 
