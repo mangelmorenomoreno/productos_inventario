@@ -16,4 +16,6 @@ public interface IinventarioDataProvider {
 
   Inventario updateCantidad(Long productoId, int nuevaCantidad);
 
+  Inventario update(Inventario inventario);
+
 }

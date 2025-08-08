@@ -25,7 +25,7 @@ public class Inventario {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(name = "id_producto", nullable = false)
+  @Column(name = "id_producto", nullable = false, unique = true)
   private Long idProducto;
 
   @Column(name = "cantidad", nullable = false)

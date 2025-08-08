@@ -3,9 +3,11 @@ package com.linktic.inventario_service.modules.inventario.api;
 import com.linktic.inventario_service.crosscutting.domain.constants.ApiDocumentationConstant;
 import com.linktic.inventario_service.crosscutting.domain.constants.ControllerConstants;
 import com.linktic.inventario_service.crosscutting.domain.constants.ResponseValueConstants;
+import com.linktic.inventario_service.crosscutting.domain.dto.ActualizarInventarioDTO;
 import com.linktic.inventario_service.crosscutting.domain.dto.InventarioProductoDTO;
 import com.linktic.inventario_service.crosscutting.domain.enums.MessageCodes;
 import com.linktic.inventario_service.crosscutting.patterns.IrestResponse;
+import com.linktic.inventario_service.crosscutting.persistence.entity.Inventario;
 import com.linktic.inventario_service.crosscutting.utils.ResponseEntityUtil;
 import com.linktic.inventario_service.modules.inventario.usecase.InventarioService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,6 +18,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -48,6 +52,19 @@ public class InventarioController {
         MessageCodes.PRODUCT_FIND_BY_ID_SUCCESS.getMessage(),
         MessageCodes.PRODUCT_FIND_BY_ID_SUCCESS.name()
     );
+  }
+
+  @Operation(summary = ApiDocumentationConstant.UPDATE_SUMARY,
+      description = ApiDocumentationConstant.UPDATE_DESCRIPCION)
+  @PutMapping()
+  public ResponseEntity<IrestResponse<Inventario>> actualizarInventario(
+      @RequestBody ActualizarInventarioDTO dto) {
+    Inventario inventario = inventarioService.updateInventario(dto);
+    return ResponseEntityUtil.createSuccessfulResponse(
+        ResponseValueConstants.SUCCESS,
+        inventario,
+        MessageCodes.UPDATE_SUCCES.getMessage(),
+        MessageCodes.UPDATE_SUCCES.name());
   }
 
 }

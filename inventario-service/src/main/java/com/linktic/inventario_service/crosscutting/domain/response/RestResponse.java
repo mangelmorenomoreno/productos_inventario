@@ -4,6 +4,10 @@ package com.linktic.inventario_service.crosscutting.domain.response;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.linktic.inventario_service.crosscutting.patterns.IrestResponse;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -13,7 +17,10 @@ import lombok.Setter;
  * @author miguel.moreno
  * @version 1.0
  */
-@Setter
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class RestResponse<T> implements IrestResponse<T> {
   private ResponseStatus responseStatus;
   private T data;

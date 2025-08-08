@@ -34,4 +34,9 @@ public class InventarioDataProvider implements IinventarioDataProvider {
     inventario.setCantidad(nuevaCantidad);
     return inventarioRepository.save(inventario);
   }
+
+  @Override
+  public Inventario update(Inventario inventario) {
+    return inventarioRepository.save(inventario);
+  }
 }

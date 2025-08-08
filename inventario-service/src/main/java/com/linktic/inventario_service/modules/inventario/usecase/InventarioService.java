@@ -1,7 +1,10 @@
 package com.linktic.inventario_service.modules.inventario.usecase;
 
+import com.linktic.inventario_service.crosscutting.domain.dto.ActualizarInventarioDTO;
 import com.linktic.inventario_service.crosscutting.domain.dto.InventarioProductoDTO;
 import com.linktic.inventario_service.crosscutting.domain.dto.ProductoDTO;
+import com.linktic.inventario_service.crosscutting.domain.enums.MessageCodes;
+import com.linktic.inventario_service.crosscutting.domain.errors.CustomException;
 import com.linktic.inventario_service.crosscutting.domain.response.RestResponse;
 import com.linktic.inventario_service.crosscutting.persistence.entity.Inventario;
 import com.linktic.inventario_service.crosscutting.utils.ProductoClient;
@@ -35,7 +38,6 @@ public class InventarioService {
       ProductoDTO producto = response.getBody().getData();
 
       Inventario inventario = iinventarioDataProvider.findProductById(productoId).orElse(null);
-
       return InventarioProductoDTO.builder()
           .productoId(producto.getId())
           .nombre(producto.getNombre())
@@ -44,8 +46,23 @@ public class InventarioService {
           .cantidad(inventario != null ? inventario.getCantidad() : null)
           .build();
     } else {
-      throw new RuntimeException("Producto no encontrado o respuesta inválida del microservicio de productos");
+      throw new CustomException(MessageCodes.PRODUCT_NOT_FOUND.getMessage());
     }
+  }
+
+
+  public Inventario updateInventario(ActualizarInventarioDTO dto) {
+    return iinventarioDataProvider.findProductById(dto.getProductoId())
+        .map(inventarioExistente -> {
+          inventarioExistente.setCantidad(dto.getCantidad());
+          return iinventarioDataProvider.update(inventarioExistente);
+        })
+        .orElseGet(() -> {
+          Inventario nuevoInventario = new Inventario();
+          nuevoInventario.setIdProducto(dto.getProductoId());
+          nuevoInventario.setCantidad(dto.getCantidad());
+          return iinventarioDataProvider.update(nuevoInventario);
+        });
   }
 
 

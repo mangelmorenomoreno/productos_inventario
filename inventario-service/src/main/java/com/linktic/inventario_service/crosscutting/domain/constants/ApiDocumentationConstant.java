@@ -20,6 +20,8 @@ public class ApiDocumentationConstant {
       "la información del producto desde el microservicio de productos).\n";
   public static final String CREATE_SUMARY = "Crear un nuevo producto";
   public static final String CREATE_DESCRIPCION = "Registra un producto en el sistema";
+  public static final String UPDATE_SUMARY = "Actualiza inventario de un nuevo producto";
+  public static final String UPDATE_DESCRIPCION = "Actualiza la cantidad de productos del inventario";
 
 
 }
