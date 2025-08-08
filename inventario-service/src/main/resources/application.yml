@@ -12,6 +12,12 @@ spring:
     show-sql: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
+# URL del microservicio de productos
+productos:
+  service:
+    url: http://localhost:8081
+    api-key: LINK_TIC
+
 security:
   api-key: LINK_TIC
 
