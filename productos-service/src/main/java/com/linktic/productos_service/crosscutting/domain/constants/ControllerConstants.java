@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
  * @version 1.0
  * @since 06-03-2024
  */
-
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ControllerConstants {
 
