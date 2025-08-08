@@ -41,10 +41,6 @@ Administra el inventario de productos y permite registrar compras:
                                 +---------+-----------+
                                           |
                                           v
-                             +------------+------------+
-                             |    API Gateway (opcional) |
-                             +------------+------------+
-                                          |
                     +---------------------+----------------------+
                     |                                            |
                     v                                            v
