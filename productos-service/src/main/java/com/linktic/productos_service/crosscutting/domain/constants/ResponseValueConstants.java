@@ -6,9 +6,9 @@ import lombok.NoArgsConstructor;
 /**
  * ResponseValueConstants.
  *
- * @author Juan Manuel Herrera
+ * @author Miguel.Moreno
  * @version 1.0
- * @since 7-04-2022
+ * @since  07-08-2025
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ResponseValueConstants {

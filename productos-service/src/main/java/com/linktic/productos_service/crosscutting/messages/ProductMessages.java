@@ -4,6 +4,13 @@ package com.linktic.productos_service.crosscutting.messages;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
+/**
+ * ProductMessages.
+ *
+ * @author miguel.moreno
+ * @version 1.0
+ * @since 07-08-2025
+ */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProductMessages {
   public static final String NOT_BLANK = "El nombre no puede estar vacío";
