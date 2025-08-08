@@ -175,12 +175,6 @@ Ver archivo `.env` para personalizar credenciales de la base de datos y URL de c
 
 ---
 
-## 🧪 Colección Postman
-
-También se incluye una colección Postman exportada (`productos_inventario.postman_collection.json`) con todos los endpoints, encabezado de seguridad y ejemplos de prueba.
-
----
-
 ## 🧠 Mejores Prácticas y Recomendaciones 
 
 - Separación en capas: domain, application, infrastructure, crosscutting.
