@@ -1,14 +1,13 @@
-package com.linktic.productos_service.crosscutting.domain.response;
+package com.linktic.inventario_service.crosscutting.domain.response;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.linktic.productos_service.crosscutting.patterns.IrestResponse;
+import com.linktic.inventario_service.crosscutting.patterns.IrestResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  * RestResponse.
