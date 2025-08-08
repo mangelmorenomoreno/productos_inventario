@@ -3,6 +3,7 @@ package com.linktic.productos_service.modules.product.api;
 
 import com.linktic.productos_service.crosscutting.domain.constants.ControllerConstants;
 import com.linktic.productos_service.modules.product.usecase.ProductService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,10 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin("*")
 @RestController
 @RequestMapping(ControllerConstants.PRODUCT)
+@RequiredArgsConstructor
 public class ProductController {
 
-  @Autowired
-  private ProductService productService;
+  private final ProductService productService;
 
 
 }

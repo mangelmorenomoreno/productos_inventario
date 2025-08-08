@@ -16,7 +16,6 @@ import lombok.ToString;
 @NoArgsConstructor
 public enum MessageCodes {
 
-  GET_USER_PROFILE_001("Información del perfil del usuario"),
   PROCESS_SUCCES("Procesado Correctamente"),
   TRUE("TRUE");
 
