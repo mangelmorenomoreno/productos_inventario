@@ -11,6 +11,7 @@ import com.linktic.productos_service.crosscutting.persistence.projection.Product
 import com.linktic.productos_service.crosscutting.utils.ResponseEntityUtil;
 import com.linktic.productos_service.modules.product.usecase.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin("*")
 @RestController
 @RequestMapping(ControllerConstants.PRODUCT)
+@SecurityRequirement(name = "apiKey")
 @RequiredArgsConstructor
 public class ProductController {
 
