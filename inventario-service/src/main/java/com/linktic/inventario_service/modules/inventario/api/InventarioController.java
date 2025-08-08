@@ -6,6 +6,7 @@ import com.linktic.inventario_service.crosscutting.domain.constants.ResponseValu
 import com.linktic.inventario_service.crosscutting.domain.dto.ActualizarInventarioDTO;
 import com.linktic.inventario_service.crosscutting.domain.dto.InventarioProductoDTO;
 import com.linktic.inventario_service.crosscutting.domain.enums.MessageCodes;
+import com.linktic.inventario_service.crosscutting.domain.errors.CustomException;
 import com.linktic.inventario_service.crosscutting.patterns.IrestResponse;
 import com.linktic.inventario_service.crosscutting.persistence.entity.Inventario;
 import com.linktic.inventario_service.crosscutting.utils.ResponseEntityUtil;
@@ -45,13 +46,17 @@ public class InventarioController {
   @GetMapping("/{id}")
   public ResponseEntity<IrestResponse<InventarioProductoDTO>> findProductById(
       @PathVariable Long id) {
-    InventarioProductoDTO productoOpt = inventarioService.findProductById(id);
-    return ResponseEntityUtil.createSuccessfulResponse(
-        ResponseValueConstants.SUCCESS,
-        productoOpt,
-        MessageCodes.PRODUCT_FIND_BY_ID_SUCCESS.getMessage(),
-        MessageCodes.PRODUCT_FIND_BY_ID_SUCCESS.name()
-    );
+    try {
+      InventarioProductoDTO productoOpt = inventarioService.findProductById(id);
+      return ResponseEntityUtil.createSuccessfulResponse(
+          ResponseValueConstants.SUCCESS,
+          productoOpt,
+          MessageCodes.PRODUCT_FIND_BY_ID_SUCCESS.getMessage(),
+          MessageCodes.PRODUCT_FIND_BY_ID_SUCCESS.name()
+      );
+    } catch (CustomException e) {
+      return ResponseEntityUtil.createErrorResponse(e.getMessage());
+    }
   }
 
   @Operation(summary = ApiDocumentationConstant.UPDATE_SUMARY,
@@ -59,12 +64,16 @@ public class InventarioController {
   @PutMapping()
   public ResponseEntity<IrestResponse<Inventario>> actualizarInventario(
       @RequestBody ActualizarInventarioDTO dto) {
-    Inventario inventario = inventarioService.updateInventario(dto);
-    return ResponseEntityUtil.createSuccessfulResponse(
-        ResponseValueConstants.SUCCESS,
-        inventario,
-        MessageCodes.UPDATE_SUCCES.getMessage(),
-        MessageCodes.UPDATE_SUCCES.name());
+    try {
+      Inventario inventario = inventarioService.updateInventario(dto);
+      return ResponseEntityUtil.createSuccessfulResponse(
+          ResponseValueConstants.SUCCESS,
+          inventario,
+          MessageCodes.UPDATE_SUCCES.getMessage(),
+          MessageCodes.UPDATE_SUCCES.name());
+    } catch (CustomException e) {
+      return ResponseEntityUtil.createErrorResponse(e.getMessage());
+    }
   }
 
 }

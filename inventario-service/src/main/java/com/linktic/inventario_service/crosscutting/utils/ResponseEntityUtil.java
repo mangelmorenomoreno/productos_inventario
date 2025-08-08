@@ -266,4 +266,11 @@ public class ResponseEntityUtil {
   private static ResponseStatus getSuccessResponseStatus(final String message) {
     return ResponseStatus.builder().message(message).statusCode(ResponseStatusCode.OK).build();
   }
+
+  public static <T> ResponseEntity<IrestResponse<T>> createErrorResponse(String message) {
+    return ResponseEntity.badRequest().body(RestResponse.<T>builder()
+        .responseStatus(new ResponseStatus(ResponseStatusCode.OK, message))
+        .data(null)
+        .build());
+  }
 }

@@ -36,6 +36,9 @@ public class InventarioService {
 
     if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null && response.getBody().getData() != null) {
       ProductoDTO producto = response.getBody().getData();
+      if (producto.getId() == null) {
+        throw new CustomException(MessageCodes.PRODUCT_NOT_FOUND.getMessage());
+      }
 
       Inventario inventario = iinventarioDataProvider.findProductById(productoId).orElse(null);
       return InventarioProductoDTO.builder()
@@ -52,6 +55,15 @@ public class InventarioService {
 
 
   public Inventario updateInventario(ActualizarInventarioDTO dto) {
+
+    ResponseEntity<RestResponse<ProductoDTO>> response = productoClient.findById(dto.getProductoId());
+
+    if (!response.getStatusCode().is2xxSuccessful() ||
+        response.getBody() == null ||
+        response.getBody().getData() == null) {
+      throw new CustomException("Producto no encontrado con ID: " + dto.getProductoId());
+    }
+
     return iinventarioDataProvider.findProductById(dto.getProductoId())
         .map(inventarioExistente -> {
           inventarioExistente.setCantidad(dto.getCantidad());

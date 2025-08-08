@@ -18,8 +18,9 @@ public class ApiDocumentationConstant {
   public static final String FIND_ID_SUMARY = "Obtener la cantidad disponible de un producto producto por ID";
   public static final String FIND_ID_DESCRIPCION = "Consultar la cantidad disponible de un producto específico por ID (obteniendo\n" +
       "la información del producto desde el microservicio de productos).\n";
-  public static final String CREATE_SUMARY = "Crear un nuevo producto";
-  public static final String CREATE_DESCRIPCION = "Registra un producto en el sistema";
+  public static final String COMPRA_SUMMARY = "Realizar compra de un producto";
+  public static final String COMPRA_DESCRIPCION = "Permite realizar la compra de un producto verificando inventario y retornando los detalles";
+
   public static final String UPDATE_SUMARY = "Actualiza inventario de un nuevo producto";
   public static final String UPDATE_DESCRIPCION = "Actualiza la cantidad de productos del inventario";
 

@@ -19,6 +19,7 @@ public enum MessageCodes {
   PRODUCT_CREATED_SUCCESS("Producto creado exitosamente"),
   PRODUCT_NOT_FOUND("Producto no encontrado o respuesta inválida del microservicio de productos"),
   PRODUCT_FIND_BY_ID_SUCCESS("Producto obtenido correctamente"),
+  COMPRA_SUCCESS("Compra realizada correctamente"),
   UPDATE_SUCCES("Inventario Actualizado con exito"),
   PRODUCT_FIND_ALL_SUCCESS("Listado de productos obtenido correctamente")
   ;
