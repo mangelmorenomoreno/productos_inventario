@@ -4,17 +4,16 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 /**
- * ControllerConstants.
+ * ResponseValueConstants.
  *
- * @author miguel.moreno
+ * @author Miguel.Moreno
  * @version 1.0
- * @since 07-08-2025
+ * @since  07-08-2025
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class ControllerConstants {
-
-
-  public static final String PRODUCT = "product";
+public class ResponseValueConstants {
+  public static final String SUCCESS = "success";
+  public static final String ERROR = "error";
 
 
 }
