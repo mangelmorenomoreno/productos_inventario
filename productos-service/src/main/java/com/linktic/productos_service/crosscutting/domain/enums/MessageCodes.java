@@ -9,15 +9,18 @@ import lombok.ToString;
  *
  * @author miguel.moreno
  * @version 1.0
- * @since 2024-03-10
+ * @since  07-08-2025
  */
 @AllArgsConstructor
 @ToString
 @NoArgsConstructor
 public enum MessageCodes {
 
-  PROCESS_SUCCES("Procesado Correctamente"),
-  TRUE("TRUE");
+  PRODUCT_CREATED_SUCCESS("Producto creado exitosamente"),
+  PRODUCT_NOT_FOUND("Producto no encontrado"),
+  PRODUCT_FIND_BY_ID_SUCCESS("Producto obtenido correctamente"),
+  PRODUCT_FIND_ALL_SUCCESS("Listado de productos obtenido correctamente")
+  ;
 
 
   private String message;

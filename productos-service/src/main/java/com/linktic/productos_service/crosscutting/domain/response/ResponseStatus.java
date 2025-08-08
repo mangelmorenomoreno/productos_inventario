@@ -14,7 +14,7 @@ import lombok.Setter;
  *
  * @author miguel.moreno
  * @version 1.0
- * @since 2024-03-10
+ * @since 07-08-2025
  */
 @Getter
 @Setter
